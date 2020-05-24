@@ -1,11 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>#UNITEDTOGETHER | FIGHT COVID-19</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/custom-design.css" />
+		<link rel="stylesheet" href="assets/css/table.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body class="landing">
+
+        <!-- Header -->
+            <div class="navbar" id="myNavbar">
+                <a href="#globe" class="scrolly">GLOBE</a>
+                <a href="#country" class="scrolly">COUNTRY</a>
+                <a href="#symptoms" class="scrolly">SYMPTOMS</a>
+                <a href="#articles" class="scrolly">RESOURCES</a>
+                <a href="#support" class="scrolly">SUPPORT</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                  </a>
+                </a>
+            </div>
+
+		<!-- Banner -->
+			<section id="banner">
+				<h2>#UNITEDTOGETHER</h2>
+			</section>
+
+			<!-- One -->
+				<section id="globe" class="wrapper style1">
+					<div class="container 75%">
+						<div class="row 200%">
+							<div class="6u 12u$(medium)">
+								<header class="major">
+									<h2>globe Overview</h2>
+									<h3>Total Cases Confirmed</h3>
+									<p id="globeTotalConfirmed"></p>
+									<h3>Total Death Toll</h3>
+									<p id="globeTotalDeaths"></p>
+									<h3>Total Recovered</h3>
+									<p id="globeTotalRecovered"></p>
+								</header>
+							</div>
+							<div id="top5TotalConfirmed" class="col-xl-4 col-md-6"></div>
+						</div>
+						<div id="totalCasesMap"></div>
+					</div>
+				</section>
+
+			<!-- Two -->
+				<section id="country" class="wrapper style2 special">
+					<div class="container">
+						<div class="container-fluid covid-container">
+							<div id="countryTable">
+								<div class="row">
+									<div class="col-lg-9 col-md-8">
+										<h1 class="covid-page-heading">Country Lookup</h1>
+									</div>
+									<div class="col-lg-3 col-md-4">
+										<input type="text" id="searchCountries" class="form-control mb-4" placeholder="Search countries"/><br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="card covid-card">
+											<div class="card-body">
+												<table class="table table-responsive-sm covid-table">
+													<thead>
+														<tr>
+															<th class="covid-full-width-mobile">Country</th>
+															<th class="covid-hide-mobile">Total Cases</th>
+															<th class="covid-hide-mobile">Total Deaths</th>
+															<th class="covid-hide-mobile">Total Recovered</th>
+															<th class="covid-hide-mobile">New Cases</th>
+															<th class="covid-hide-mobile">New Deaths</th>
+															<th class="covid-hide-mobile">New Recovered</th>
+														</tr>
+													</thead>
+													<tbody id="covidSummary">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+				</section>
+
+			<!-- Three -->
+				<section id="symptoms" class="wrapper style1">
+					<div class="container">
+						<div class="feature-grid">
+							<div class="feature">
+								<div class="image rounded"><img src="images/pic04.jpg" alt="" /></div>
+								<div class="content">
+									<header>
+										<h4>Symptoms</h4>
+										<p>What to look out for:</p>
+									</header>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore esse tenetur accusantium porro omnis, unde mollitia totam sit nesciunt consectetur.</p>
+								</div>
+							</div>
+							<div class="feature">
+								<div class="image rounded"><img src="images/pic05.jpg" alt="" /></div>
+								<div class="content">
+									<header>
+										<h4>Preventions</h4>
+										<p>Do your part in stopping the spread</p>
+									</header>
+									<p>Animi mollitia optio culpa expedita. Dolorem alias minima culpa repellat. Dolores, fuga maiores ut obcaecati blanditiis, at aperiam doloremque.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Four -->
+			<section id="articles" class="wrapper style2 special">
+				<div class="container">
+					<header class="major">
+						<h2>Resources to keep updated</h2>
+						<p>Article A</p>
+						<p>Article B</p>
+						<p>Article C</p>
+						<p>Article D</p>
+						<p>Article E</p>
+					</header>
+				</div>
+			</section>
+			<!-- Five -->
+				<section id="support" class="wrapper style3 special">
+					<div class="container">
+						<header class="major">
+							<h2>{{Amount Collected}}</h2><br>
+							<h2>Wall of Fame</h2>
+							<p>Fake Donor 1</p>
+							<p>Fake Donor 2</p>
+							<p>Fake Donor 3</p>
+						</header>
+					</div>
+				</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="actions">
+						<li><a href="donations-field.html" target="_blank" class="button special big">SUPPORT & DONATE TODAY</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/api_data.js"></script>
+			<script src="assets/js/scroll.js"></script>
+            <script text="text/javascript" script src="assets/js/main.js"></script>
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("myNavbar");
+                    if (x.className === "navbar") {
+                        x.className += " responsive";
+                    } else {
+                        x.className = "navbar";
+                    }
+                }
+            </script>
+
+	</body>
 </html>
