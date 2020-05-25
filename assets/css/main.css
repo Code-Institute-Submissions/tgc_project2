@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
-@import url(font-awesome.min.css);
 
 /*Set foundation*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -220,27 +219,6 @@ hr {
 
 .align-right {
     text-align: right;
-}
-
-/* covid stat */
-
-.overlay {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
-    margin-top: -8rem;
-}
-
-.ratio-stat-wrapper {
-    text-align: center;
-    padding-top: 1.5rem;
-}
-
-.ratio-stat:nth-child(1) {
-    border-right: 1px #ddd solid;
 }
 
 /* mainbox */
