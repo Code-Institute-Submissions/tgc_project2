@@ -207,7 +207,8 @@ function drawRatioChart(v1, v2) {
     var options = {
         pieHole: 0.4,
         legend: 'none',
-        colors: ['#666666', '#5D001E'],
+        backgroundColor: 'none',
+        colors: ['#666666', '#D89FA6'],
         pieSliceText: 'none'
     }
 
@@ -218,7 +219,7 @@ function drawRatioChart(v1, v2) {
     };
 }
 
-// globetotalchart
+// barchart
 function drawGlobeTotalChart(totalConfirmed, totalDeaths, totalRecovered) {
     var data = google.visualization.arrayToDataTable([
         ['Statistic', 'Count', { role: 'style' }],
@@ -232,8 +233,8 @@ function drawGlobeTotalChart(totalConfirmed, totalDeaths, totalRecovered) {
             title: 'Total Count'
         },
         colors: ['#4455AB'],
+        backgroundColor: 'white',
         legend: 'none',
-        chartArea: {'top':'10%'}
     };
 
     var element = document.getElementById('globeTotalChart');
