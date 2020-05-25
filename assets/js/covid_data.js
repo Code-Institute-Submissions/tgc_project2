@@ -150,6 +150,13 @@ function getCovidData() {
         
             //world map
             drawMap(covidData.Countries, 'TotalConfirmed', 'totalCasesMap');
+
+            //bar chart
+            drawGlobeTotalChart(globeTotalConfirmed, globeTotalDeaths, globeTotalRecovered);
+
+            //ratio chart
+            var totalMinusRecovered = globeTotalConfirmed - globeTotalRecovered;
+            drawRatioChart(globeTotalRecovered, totalMinusRecovered);
         } else {
             console.log('Wait before reloading!')
         }
@@ -189,6 +196,53 @@ function drawMap(countriesArr, key, elementId) {
     };
 };
 
+// ratiochart
+function drawRatioChart(v1, v2) {
+    var data = google.visualization.arrayToDataTable([
+        ['Ratio', 'Percent'],
+        ['Recovered', v1],
+        ['Not Recovered', v2],
+    ])
+
+    var options = {
+        pieHole: 0.4,
+        legend: 'none',
+        colors: ['#666666', '#5D001E'],
+        pieSliceText: 'none'
+    }
+
+    var element = document.getElementById('ratioChart');
+    if (typeof(element) != 'undefined' && element != null) {
+        var chart = new google.visualization.PieChart(document.getElementById('ratioChart'));
+        chart.draw(data, options);
+    };
+}
+
+// globetotalchart
+function drawGlobeTotalChart(totalConfirmed, totalDeaths, totalRecovered) {
+    var data = google.visualization.arrayToDataTable([
+        ['Statistic', 'Count', { role: 'style' }],
+        ['Total Cases', totalConfirmed, 'color: #5D001E'],
+        ['Total Deaths', totalDeaths, 'color: #F44066'],
+        ['Total Recovered', totalRecovered, 'color: #006D5B']
+    ]);
+
+    var options = {
+        hAxis: {
+            title: 'Total Count'
+        },
+        colors: ['#4455AB'],
+        legend: 'none',
+        chartArea: {'top':'10%'}
+    };
+
+    var element = document.getElementById('globeTotalChart');
+    if (typeof(element) != 'undefined' && element != null) {
+        var chart = new google.visualization.BarChart(document.getElementById('globeTotalChart'));
+        chart.draw(data, options);
+    };
+};
+
 
 //show-collapse
 $("#showAll").click(function(){
@@ -199,22 +253,6 @@ $("#collapseAll").click(function(){
     $("#covidTable").hide();
 })
 
-
-//format numbers
-function formatNumber(number) {
-    // 9 zeroes for bil
-    return Math.abs(Number(number)) >= 1.0e+9
-    ? (Math.abs(Number(number)) / 1.0e+9).toFixed(2) + "B"
-
-    // 6 zeroes for mil
-    : Math.abs(Number(number)) >= 1.0e+6
-    ? (Math.abs(Number(number)) / 1.0e+6).toFixed(2) + "M"
-    
-    // 3 zerose for thousands
-    : Math.abs(Number(number)) >= 1.0e+3
-    ? (Math.abs(Number(number)) / 1.0e+3).toFixed(2) + "K"
-    : Math.abs(Number(number));
-};
 
 // resize trigger  
 $(window).resize(function() {
