@@ -111,18 +111,6 @@ function getCovidData() {
                 sgTotalDeaths += totalDeaths;
                 sgNewRecovered += newRecovered;
                 sgTotalRecovered += totalRecovered;
-
-                //table
-                $covidTable.append(
-                    '<tr><td>' + country + 
-                    '</td><td>' + totalConfirmed + 
-                    '</td><td>' + totalDeaths + 
-                    '</td><td>' + totalRecovered + 
-                    '</td><td>' + newConfirmed + 
-                    '</td><td>' + newDeaths +
-                    '</td><td>' + newRecovered +
-                    '</td></tr>'
-                    );
             }
 
             $globeNewConfirmed.append(globeNewConfirmed.toLocaleString());
@@ -150,12 +138,47 @@ function getCovidData() {
             var sgMinusRecovered = sgTotalConfirmed - sgTotalRecovered;
             drawDonutChart(sgTotalRecovered, sgMinusRecovered)
 
-
+            //world map
+            drawMap(covidData.Countries, 'TotalConfirmed', 'totalCasesMap');
         } else {
-            console.log('No data for now!')
+            console.log('Wait before reloading!')
         }
     })
 
+}
+
+// covidTable
+function getCovidTable() {
+    covidTableUrl = ('https://api.covid19api.com/summary');
+    $.getJSON(covidTableUrl, function(covidTable) {
+        console.log('Covid Table: ');
+        console.log(covidTable);
+        if (covidTable.Countries.length > 0) {
+            for (i=0; i < covidTable.Countries.length; i++) {
+                var countryTable = covidTable.Countries[i].Country;
+                var totalConfirmedTable = covidTable.Countries[i].TotalConfirmed;
+                var newDeathsTable = covidTable.Countries[i].NewDeaths;
+                var totalDeathsTable = covidTable.Countries[i].TotalDeaths;
+                var newRecoveredTable = covidTable.Countries[i].NewRecovered;
+                var newConfirmedTable = covidTable.Countries[i].NewConfirmed;
+                var totalRecoveredTable = covidTable.Countries[i].TotalRecovered;
+
+                //table
+                $covidTable.append(
+                    '<tr><td>' + countryTable + 
+                    '</td><td>' + totalConfirmedTable + 
+                    '</td><td>' + totalDeathsTable + 
+                    '</td><td>' + totalRecoveredTable + 
+                    '</td><td>' + newConfirmedTable + 
+                    '</td><td>' + newDeathsTable +
+                    '</td><td>' + newRecoveredTable +
+                    '</td></tr>'
+                    );
+            }
+        } else {
+            console.log("Table has no data!");
+        }
+    });
 }
 
 //draw donut chart
@@ -181,6 +204,40 @@ function drawDonutChart(value1, value2) {
     };
 };
 
+function drawMap(countriesArr, property, elementId) {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Country');
+    data.addColumn('number', 'Cases');
+
+    for (i=0; i< countriesArr.length; i++) {
+        data.addRow(
+            [countriesArr[i].Country, countriesArr[i][property]]
+        );
+    }
+
+    var options = {
+        colorAxis: {colors: ['#D89FA6', '#5D001E']},
+        backgroundColor: '#5D001E'
+    };
+
+    var element = document.getElementById(elementId);
+    if (typeof(element) != 'undefined' && element != null) {
+        var chart = new google.visualization.GeoChart(document.getElementById(elementId));
+        chart.draw(data, options);
+    };
+};
+
+
+//show-collapse
+$("#showAll").click(function(){
+    $("#covidTable").show();
+})
+
+$("#collapseAll").click(function(){
+    $("#covidTable").hide();
+})
+
+
 //format numbers
 function formatNumber(number) {
     // 9 zeroes for bil
@@ -197,7 +254,7 @@ function formatNumber(number) {
     : Math.abs(Number(number));
 };
 
-// create trigger for resizeEnd event     
+// resize trigger  
 $(window).resize(function() {
     if(this.resizeTO) clearTimeout(this.resizeTO);
     this.resizeTO = setTimeout(function() {
@@ -205,7 +262,7 @@ $(window).resize(function() {
     }, 500);
 });
 
-// call function when window resize is done 
+// re-load upon resize  
 $(window).on('resizeEnd', function() {
     reloadData();
 });
@@ -214,9 +271,12 @@ $(window).on('resizeEnd', function() {
 function reloadData() {
     clearData();
     getCovidData();
+    getCovidTable();
 }
 
 //data on page load
 $(document).ready(function() {
     getCovidData();
+    getCovidTable();
 })
+
