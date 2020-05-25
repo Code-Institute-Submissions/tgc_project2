@@ -157,19 +157,28 @@ function getCovidData() {
 
 }
 
-function drawMap(countriesArr, property, elementId) {
+function drawMap(countriesArr, key, elementId) {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Country');
     data.addColumn('number', 'Cases');
 
     for (i=0; i< countriesArr.length; i++) {
+
+        if (countriesArr[i].Country == "United States of America") {
+            countriesArr[i].Country = "United States";
+        }
+
+        if (countriesArr[i].Country == "Russian Federation") {
+            countriesArr[i].Country = "RU";
+        }
+
         data.addRow(
-            [countriesArr[i].Country, countriesArr[i][property]]
+            [countriesArr[i].Country, countriesArr[i][key]]
         );
     }
 
     var options = {
-        colorAxis: {colors: ['#D89FA6', '#5D001E']},
+        colorAxis: {colors: ['#D89FA6', '#F1202B']},
         backgroundColor: '#5D001E'
     };
 
@@ -216,7 +225,7 @@ $(window).resize(function() {
 });
 
 // country lookup search
-$("#searchCountries").on("keyup", function() {
+$("#searchCountry").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#covidTable tr").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
