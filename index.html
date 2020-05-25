@@ -34,7 +34,7 @@
 			<section id="compa-stats" class="wrapper style1">
 				<div class="mainbox">
 					<h2>We're here for you.</h2>
-					<p>We hope to be your single source of truth for information during this period. While we are battling this virus in our homeground, let's not forget that we are not alone. Join us in supporting the community that needs our help most.</p>
+					<p>We hope to be your single source of truth for information during this period. While we are battling this virus in our homeground, let's not forget that we are not alone. Join us in supporting the vulnerable community that needs our help most!</p>
 					<div class="split-grid">
 						<div class="split">
 							<div class="content">
@@ -73,7 +73,8 @@
 						<header class="major">
 						<h2>Interactive</h2><br>
 						<div id="totalCasesMap"></div><br>
-						<button id="showAll">Expand All</button> <button id="collapseAll">Collapse All</button>
+						<input type="text" id="searchCountry" placeholder="Search countries"/><br><br>
+						<button id="showAll">Expand All</button> <button id="collapseAll">Close All</button>
 								<table class="table table-responsive-sm">
 									<thead>
 										<tr>
@@ -96,25 +97,34 @@
 			<!-- Three -->
 				<section id="prevent" class="wrapper style1">
 					<div class="mainbox">
+						<h2>Help keep a safe environment for everyone</h2>
 						<div class="split-grid">
 							<div class="split">
 								<div class="image rounded"><img src="images/pic04.jpg" alt="" /></div>
-								<div class="content"></div>
+								<div class="content">
 									<header>
 										<h4>Symptoms</h4>
-										<p>What to look out for:</p>
+										<p>Spot signs and take action</p>
 									</header>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore esse tenetur accusantium porro omnis, unde mollitia totam sit nesciunt consectetur.</p>
+									1. <b>Common</b> symptoms for all:
+									<br><i>Fever, dry cough, fatigue</i>
+									<br>2. <b>Serious</b> symptoms for some:
+									<br><i>Chest pain, difficulty breathing,
+									<br>loss of speech or movement</i>
 								</div>
 							</div>
 							<div class="split">
 								<div class="image rounded"><img src="images/pic05.jpg" alt="" /></div>
-								<div class="content"></div>
+								<div class="content">
 									<header>
 										<h4>Preventions</h4>
-										<p>Do your part in stopping the spread</p>
+										<p>Do your part and stop COVID-19</p>
 									</header>
-									<p>Animi mollitia optio culpa expedita. Dolorem alias minima culpa repellat. Dolores, fuga maiores ut obcaecati blanditiis, at aperiam doloremque.</p>
+									1. <b>Stay</b> home as much as you can
+									<br>2. <b>Keep</b> a safe distance
+									<br>3. <b>Wash</b> hands often
+									<br>4. <b>Cover</b> your cough
+									<br>5. <b>Sick?</b> Call ahead
 								</div>
 							</div>
 						</div>
@@ -134,10 +144,12 @@
 			</section>
 
 			<!-- Five -->
-				<section id="support" class="wrapper style3 special">
+				<section id="support" class="wrapper style special">
 					<div class="mainbox">
-						<header class="major">
-						</header>
+						<ul class="actions">
+							<li><a href="https://github.com/alexiahsu/tgc_project2" target="_blank">GitHub</a></li>
+							<li><a href="https://alexiahsu.github.io/tgc_project/" target="_blank">Resume</a></li>
+						</ul>
 					</div>
 				</section>
 
@@ -148,6 +160,16 @@
 			<script src="assets/js/covid_data.js"></script>
 			<script src="assets/js/news_data.js"></script>
 			<script src="assets/js/scroll.js"></script>
-            <script text="text/javascript" script src="assets/js/main.js"></script>
+			<script text="text/javascript" script src="assets/js/main.js"></script>
+			<script>
+                function myFunction() {
+                    var x = document.getElementById("myNavbar");
+                    if (x.className === "navbar") {
+                        x.className += " responsive";
+                    } else {
+                        x.className = "navbar";
+                    }
+                }
+            </script>
 	</body>
 </html>
