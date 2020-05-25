@@ -75,6 +75,7 @@ function getCovidData() {
             var sgTotalDeaths = 0;
             var sgNewRecovered = 0;
             var sgTotalRecovered = 0;
+
             var globeNewConfirmed = 0;
             var globeTotalConfirmed = 0;
             var globeNewDeaths = 0;
@@ -83,6 +84,7 @@ function getCovidData() {
             var globeTotalRecovered = 0;
 
             for (i=0; i < covidData.Countries.length; i++) {
+                var country = covidData.Countries[i].Country;
                 var newConfirmed = covidData.Countries[i].NewConfirmed;
                 var totalConfirmed = covidData.Countries[i].TotalConfirmed;
                 var newDeaths = covidData.Countries[i].NewDeaths;
@@ -109,6 +111,18 @@ function getCovidData() {
                 sgTotalDeaths += totalDeaths;
                 sgNewRecovered += newRecovered;
                 sgTotalRecovered += totalRecovered;
+
+                //table
+                $covidTable.append(
+                    '<tr><td>' + country + 
+                    '</td><td>' + totalConfirmed + 
+                    '</td><td>' + totalDeaths + 
+                    '</td><td>' + totalRecovered + 
+                    '</td><td>' + newConfirmed + 
+                    '</td><td>' + newDeaths +
+                    '</td><td>' + newRecovered +
+                    '</td></tr>'
+                    );
             }
 
             $globeNewConfirmed.append(globeNewConfirmed.toLocaleString());
