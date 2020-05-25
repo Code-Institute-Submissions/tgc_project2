@@ -121,6 +121,9 @@ Devices and browesers:
   - Google Chrome
   - Safari
 
+## Issue
+Should the interactive charts ((1) Bar chart, (2) Donut chart, (3) Geochart) not work, kindly refer to live demo and code for proof of usage.
+
 ## Deployment
 
 Git was used for version control and [Github](<(https://github.com)>) hosts the repository for all commits
