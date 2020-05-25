@@ -21,7 +21,7 @@ function getSgCovidNews() {
                 var newsUrl = newsData.articles[i].url;
 
                 $covidSgNews.append(
-                    '<li><a href="' + newsUrl + '">' + newsTitle + '</a></li><br/>'
+                    '<li><a href="' + newsUrl + '" target="_blank">' + newsTitle + '</a></li><br/>'
                 );
             }
         }
@@ -43,12 +43,12 @@ function getSgCovidNews() {
                 var newsUrlGlobal = newsGlobalData.articles[i].url;
 
                 $covidGlobalNews.append(
-                    '<li><a href="' + newsUrlGlobal + '">' + newsTitleGlobal + '</a></li><br/>'
+                    '<li><a href="' + newsUrlGlobal + '" target="_blank">' + newsTitleGlobal + '</a></li><br/>'
                 );
             }
         }
         else {
-            $covidGlobalNews.append('Lcao news not available');
+            $covidGlobalNews.append('Global news not available');
         }
     });
 };

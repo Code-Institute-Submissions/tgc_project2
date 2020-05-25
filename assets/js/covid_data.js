@@ -91,12 +91,21 @@ function getCovidData() {
                 var totalDeaths = covidData.Countries[i].TotalDeaths;
                 var newRecovered = covidData.Countries[i].NewRecovered;
                 var totalRecovered = covidData.Countries[i].TotalRecovered;
+
                 var sgNewConfirmed = covidData.Countries[150].NewConfirmed;
                 var sgTotalConfirmed = covidData.Countries[150].TotalConfirmed;
                 var sgNewDeaths = covidData.Countries[150].NewDeaths;
                 var sgTotalDeaths = covidData.Countries[150].TotalDeaths;
                 var sgNewRecovered = covidData.Countries[150].NewRecovered;
                 var sgTotalRecovered = covidData.Countries[150].TotalRecovered;
+
+                var countryTable = covidData.Countries[i].Country;
+                var totalConfirmedTable = covidData.Countries[i].TotalConfirmed;
+                var newDeathsTable = covidData.Countries[i].NewDeaths;
+                var totalDeathsTable = covidData.Countries[i].TotalDeaths;
+                var newRecoveredTable = covidData.Countries[i].NewRecovered;
+                var newConfirmedTable = covidData.Countries[i].NewConfirmed;
+                var totalRecoveredTable = covidData.Countries[i].TotalRecovered;
 
                 globeNewConfirmed += newConfirmed;
                 globeTotalConfirmed += totalConfirmed;
@@ -111,6 +120,18 @@ function getCovidData() {
                 sgTotalDeaths += totalDeaths;
                 sgNewRecovered += newRecovered;
                 sgTotalRecovered += totalRecovered;
+
+                //table
+                $covidTable.append(
+                    '<tr><td>' + countryTable + 
+                    '</td><td>' + totalConfirmedTable + 
+                    '</td><td>' + totalDeathsTable + 
+                    '</td><td>' + totalRecoveredTable + 
+                    '</td><td>' + newConfirmedTable + 
+                    '</td><td>' + newDeathsTable +
+                    '</td><td>' + newRecoveredTable +
+                    '</td></tr>'
+                    );
             }
 
             $globeNewConfirmed.append(globeNewConfirmed.toLocaleString());
@@ -126,18 +147,7 @@ function getCovidData() {
             $sgTotalDeaths.append(sgTotalDeaths.toLocaleString());
             $sgNewRecovered.append(sgNewRecovered.toLocaleString());
             $sgTotalRecovered.append(sgTotalRecovered.toLocaleString());
-            
-            //ratioRecovered
-            $ratioSgTotalConfirmed.append(formatNumber(sgTotalConfirmed));
-            $ratioSgTotalRecovered.append(formatNumber(sgTotalRecovered));
-
-            var ratioSgRecovered = ((sgTotalRecovered/sgTotalConfirmed)*100).toFixed(1);
-            console.log(ratioSgRecovered);
-            $ratioSgRecovered.append(ratioSgRecovered);
-
-            var sgMinusRecovered = sgTotalConfirmed - sgTotalRecovered;
-            drawDonutChart(sgTotalRecovered, sgMinusRecovered)
-
+        
             //world map
             drawMap(covidData.Countries, 'TotalConfirmed', 'totalCasesMap');
         } else {
@@ -146,63 +156,6 @@ function getCovidData() {
     })
 
 }
-
-// covidTable
-function getCovidTable() {
-    covidTableUrl = ('https://api.covid19api.com/summary');
-    $.getJSON(covidTableUrl, function(covidTable) {
-        console.log('Covid Table: ');
-        console.log(covidTable);
-        if (covidTable.Countries.length > 0) {
-            for (i=0; i < covidTable.Countries.length; i++) {
-                var countryTable = covidTable.Countries[i].Country;
-                var totalConfirmedTable = covidTable.Countries[i].TotalConfirmed;
-                var newDeathsTable = covidTable.Countries[i].NewDeaths;
-                var totalDeathsTable = covidTable.Countries[i].TotalDeaths;
-                var newRecoveredTable = covidTable.Countries[i].NewRecovered;
-                var newConfirmedTable = covidTable.Countries[i].NewConfirmed;
-                var totalRecoveredTable = covidTable.Countries[i].TotalRecovered;
-
-                //table
-                $covidTable.append(
-                    '<tr><td>' + countryTable + 
-                    '</td><td>' + totalConfirmedTable + 
-                    '</td><td>' + totalDeathsTable + 
-                    '</td><td>' + totalRecoveredTable + 
-                    '</td><td>' + newConfirmedTable + 
-                    '</td><td>' + newDeathsTable +
-                    '</td><td>' + newRecoveredTable +
-                    '</td></tr>'
-                    );
-            }
-        } else {
-            console.log("Table has no data!");
-        }
-    });
-}
-
-//draw donut chart
-function drawDonutChart(value1, value2) {
-    var data = new google.visualization.arrayToDataTable([
-        ['Ratio', 'Percent'],
-        ['Recovered', value1],
-        ['Not Recovered', value2],
-    ]);
-
-    var options = {
-        pieHole: 0.7,
-        legend: 'none',
-        colors: ['#4455AB', '#f1f3f9'],
-        chartArea: {'width': '100%', 'height': '100%'},
-        pieSliceText: 'none'
-    };
-
-    var element = document.getElementById('ratioSgRecoveredChart');
-    if (typeof(element) != 'undefined' && element != null) {
-        var chart = new google.visualization.PieChart(document.getElementById('ratioSgRecoveredChart'));
-        chart.draw(data, options);
-    };
-};
 
 function drawMap(countriesArr, property, elementId) {
     var data = new google.visualization.DataTable();
@@ -262,6 +215,14 @@ $(window).resize(function() {
     }, 500);
 });
 
+// country lookup search
+$("#searchCountries").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#covidTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+});
+
 // re-load upon resize  
 $(window).on('resizeEnd', function() {
     reloadData();
@@ -271,12 +232,10 @@ $(window).on('resizeEnd', function() {
 function reloadData() {
     clearData();
     getCovidData();
-    getCovidTable();
 }
 
 //data on page load
 $(document).ready(function() {
     getCovidData();
-    getCovidTable();
 })
 

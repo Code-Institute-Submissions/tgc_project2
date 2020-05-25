@@ -245,9 +245,9 @@ hr {
 
 /* mainbox */
 .mainbox {
-    margin-left: 15%;
+    margin-left: 10%;
     text-align: center;
-    margin-right: 15%;
+    margin-right: 10%;
 }
 
 /* Wrapper */
@@ -284,25 +284,8 @@ body.is-touch .wrapper.style3 {
 
     .wrapper.style3 {
         background-attachment: fixed;
-        background-image: url("../../images/banner.jpg");
         background-position: center center;
     }
-
-        .wrapper.style3 header.major {
-            margin-bottom: 3em;
-        }
-
-            .wrapper.style3 header.major h2 {
-                color: #ffffff;
-            }
-
-            @media screen and (max-width: 1280px) {
-
-                .wrapper.style3 header.major {
-                    margin-bottom: 2em;
-                }
-
-            }
 
     @media screen and (max-width: 980px) {
 
@@ -574,6 +557,10 @@ ul {
         padding-left: 0;
     }
 
+    ul.actions a {
+        color: black;
+    }
+
         ul.actions li {
             display: inline-block;
             padding: 0 1em 0 0;
@@ -699,7 +686,7 @@ header p {
 }
 
 header h2 + p {
-    font-size: 1.25em;
+    font-size: 2em;
     margin-top: -1em;
     line-height: 1.5em;
 }
@@ -741,7 +728,7 @@ header.major {
     }
 
         header.major h2 {
-            font-size: 2.5em;
+            font-size: 2em;
         }
 
         header.major p {
