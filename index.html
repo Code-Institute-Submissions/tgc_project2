@@ -15,8 +15,8 @@
         <!-- Header -->
             <div class="navbar" id="myNavbar">
                 <a href="#compa-stats" class="scrolly">STATS</a>
-                <a href="#country" class="scrolly">COUNTRY</a>
-                <a href="#symptoms" class="scrolly">SYMPTOMS</a>
+                <a href="#interactive" class="scrolly">INTERACT</a>
+                <a href="#prevent" class="scrolly">PREVENT</a>
                 <a href="#articles" class="scrolly">RESOURCES</a>
                 <a href="#support" class="scrolly">SUPPORT</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -68,12 +68,12 @@
 
 			<!-- Two -->
 
-				<section id="country" class="wrapper style2 special">
+				<section id="interactive" class="wrapper style2 special">
 					<div class="mainbox">
 						<header class="major">
-						<h2>Country Lookup</h2><br>
-						<input type="text" id="searchCountries" class="form-control mb-4" placeholder="Search country"/><br>
-							<div class="col">
+						<h2>Interactive</h2><br>
+						<div id="totalCasesMap"></div><br>
+						<button id="showAll">Expand All</button> <button id="collapseAll">Collapse All</button>
 								<table class="table table-responsive-sm">
 									<thead>
 										<tr>
@@ -89,13 +89,12 @@
 									<tbody id="covidTable">
 									</tbody>
 								</table>			
-							</div>
 						</header>
 					</div>
 				</section>
 
 			<!-- Three -->
-				<section id="symptoms" class="wrapper style1">
+				<section id="prevent" class="wrapper style1">
 					<div class="mainbox">
 						<div class="split-grid">
 							<div class="split">
@@ -133,27 +132,14 @@
 					</header>
 				</div>
 			</section>
+
 			<!-- Five -->
 				<section id="support" class="wrapper style3 special">
 					<div class="mainbox">
 						<header class="major">
-							<h2>{{Amount Collected}}</h2><br>
-							<h2>Wall of Fame</h2>
-							<p>Fake Donor 1</p>
-							<p>Fake Donor 2</p>
-							<p>Fake Donor 3</p>
 						</header>
 					</div>
 				</section>
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="mainbox">
-					<ul class="actions">
-						<li><a href="donations-field.html" target="_blank" class="button special big">SUPPORT & DONATE TODAY</a></li>
-					</ul>
-				</div>
-			</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -163,16 +149,5 @@
 			<script src="assets/js/news_data.js"></script>
 			<script src="assets/js/scroll.js"></script>
             <script text="text/javascript" script src="assets/js/main.js"></script>
-            <script>
-                function myFunction() {
-                    var x = document.getElementById("myNavbar");
-                    if (x.className === "navbar") {
-                        x.className += " responsive";
-                    } else {
-                        x.className = "navbar";
-                    }
-                }
-            </script>
-
 	</body>
 </html>
